@@ -1,0 +1,2 @@
+# TableViewAutoRowHeightDemo
+TableView根据内容自动计算行高的简易demo,仅此实现这一个功能,简单易懂,目的更明确
