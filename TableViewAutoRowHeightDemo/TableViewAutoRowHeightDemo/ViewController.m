@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "HLAutoHeightCellTableViewCell.h"
 
 static NSString *cellId = @"cellId";
 
@@ -18,7 +19,6 @@ static NSString *cellId = @"cellId";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     [self setupUI];
     
@@ -36,12 +36,6 @@ static NSString *cellId = @"cellId";
     NSLog(@"%zd -- %zd", indexPath.section, indexPath.row);
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewAutomaticDimension;
-}
-
-
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
@@ -58,19 +52,21 @@ static NSString *cellId = @"cellId";
 }
 
 
-
 - (void)setupUI {
     
     UITableView *tv = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.view addSubview:tv];
     
-    tv.estimatedRowHeight = 200;
+    // 设置预估行高,这样太重要
+    tv.estimatedRowHeight = 100;
+    // 设置自动行高,这一行不要似乎也可以,你值得一试注释
     tv.rowHeight = UITableViewAutomaticDimension;
     
-    [tv registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
+    [tv registerClass:[HLAutoHeightCellTableViewCell class] forCellReuseIdentifier:cellId];
     
     tv.dataSource = self;
     tv.delegate = self;
+    
 }
 
 
